@@ -1,0 +1,3 @@
+Welcome to the ReCurta project!  Our goal is to translate the original Curta Type I engineering diagrams into English, redraw them using CAD software, and then use those diagrams to build the first Curta calculator since 1972.
+
+Everything produced as part of this project is being released into the public domain.  Everyone should be able to inspect, visualize, or even build their own Curta calculator; it shouldn't be fated to forever be an expensive relic on eBay.
