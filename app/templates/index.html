@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block scripts %}
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+<style>
+body {
+	font-family: "Roboto Slab";
+	font-weight: 300;
+}
+a, a:visited, a:active {
+	text-decoration: none;
+	border-bottom: 1px black dashed;
+}
+a:hover {
+	border-bottom: 1px black solid;
+}
+</style>
+{% endblock %}
+{% block body %}
+<h1>What is this?</h1>
+
+<p>This app is used to translate Curta engineering diagrams into English from their native German.  Each of the links below represents a single part of the Curta calculator.</p>
+<p>The basic flow of the application is that you pick a part, then add text regions (covering the original text) and replace it with translated versions.</p>
+<p>"Needs review" parts are those which have been partially translated, but some of the text regions are marked as needing help from a native speaker -- these regions show up in purple and are prefixed by '!!' in the German text.  The other categories are rather obvious.</p>
+
+<h1>How it works</h1>
+<p>The editor is split into three parts: diagram, common functions (e.g. New Region), and the region editor (only shown when a region is selected). The english name of the part (which is usually in huge text in the bottom-right corner of the diagram) is displayed in the top right of the editor; please use that name rather than re-translating that text.</p>
+<p>You can use the 'New region' button or double click to create a new region in the image.  If it's a tall, thin region, the text inside will automatically be rotated into place as you'd expect.</p>
+<p>The scrollwheel will zoom, and dragging the image pans it.</p>
+<p>When you make a change to the text in the region, just click 'Save' and the app will take care of the rest.  To preview how the English text looks, hit 'Toggle labels'.</p>
+<p style="font-weight: bold">If the translated text isn't clear, put '!!' before the German text -- that will highlight the region for native speaker review!  Also change the status of the file to "Needs Translation" to call it out on the front page.</p>
+
+<h1>How to help</h1>
+
+<p>If you're a German speaker, please help out with the "Needs review" parts first -- these are the ones that need help the most.  There's also the <a href="/fails">big list of translation fails</a>.  Otherwise, pick a random "Not started" part, and go wild.</p>
+<p style="font-weight: bold">Please join us in #curta on irc.freenode.net and let us know what you're working on and if you have any questions!  Thank you for all your help.</p>
+
+<h1>Needs translation ({{ needs_trans[1] }})</h1>
+<p><a href="/fails">Big list of translation fails</a></p>
+<ul>
+{% for fn, num, name, progress in needs_trans[0] %}
+	<li><a href="{{ handler.index.get_edit.url(fn=fn, name=name) }}">{{ num }} -- {{ name }} ({{ progress }})</a></li>
+{% endfor %}
+</ul>
+<h1>Needs review ({{ needs_review[1] }})</h1>
+<ul>
+{% for fn, num, name, progress in needs_review[0] %}
+	<li><a href="{{ handler.index.get_edit.url(fn=fn, name=name) }}">{{ num }} -- {{ name }} ({{ progress }})</a></li>
+{% endfor %}
+</ul>
+<h1>In progress ({{ started[1] }})</h1>
+<ul>
+{% for fn, num, name, progress in started[0] %}
+	<li><a href="{{ handler.index.get_edit.url(fn=fn, name=name) }}">{{ num }} -- {{ name }} ({{ progress }})</a></li>
+{% endfor %}
+</ul>
+<h1>Not started ({{ not_started[1] }})</h1>
+<ul>
+{% for fn, num, name in not_started[0] %}
+	<li><a href="{{ handler.index.get_edit.url(fn=fn, name=name) }}">{{ num }} -- {{ name }}</a></li>
+{% endfor %}
+</ul>
+<h1>Finished ({{ finished[1] }})</h1>
+<ul>
+{% for fn, num, name, progress in finished[0] %}
+	<li><a href="{{ handler.index.get_edit.url(fn=fn, name=name) }}">{{ num }} -- {{ name }} ({{ progress }})</a></li>
+{% endfor %}
+</ul>
+<script>
+setInterval(function() {
+	location.reload(true);
+}, 15000);
+</script>
+{% endblock %}

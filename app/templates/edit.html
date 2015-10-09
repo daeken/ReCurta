@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block scripts %}
+<script src="scripts/edit.js">
+</script>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Roboto Slab";
+	font-weight: 300;
+	overflow: hidden;
+}
+div {
+	float: left;
+}
+#cvs {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#main {
+	width: 80%;
+	height: 100%;
+	overflow: hidden;
+}
+#right {
+	width: 20%;
+	height: 100%;
+	overflow: hidden;
+}
+#edit {
+	padding-left: 10px;
+	width: 100%;
+	height: 70%;
+	overflow: scroll;
+}
+#common {
+	padding-left: 10px;
+	width: 100%;
+	height: 30%;
+	overflow: scroll;
+}
+.quick-text {
+	border-bottom: 1px black dashed;
+}
+a, a:visited, a:active {
+	text-decoration: none;
+	border-bottom: 1px black dashed;
+}
+a:hover {
+	border-bottom: 1px black solid;
+}
+</style>
+<script>
+var regions = {{ regions | safe }};
+</script>
+{% endblock %}
+{% block body %}
+<div id="main" data-fn="{{ fn }}">
+	<canvas id="cvs">
+	</canvas>
+	<img id="src" src="/images?fn={{ fn }}" style="display: none">
+</div>
+<div id="right">
+	<div id="common">
+		<h3>{{ name }}</h3>
+		<button id="new-region">New region</button> <button id="toggle-labels">Toggle labels</button><br>
+		Status: <select id="status">
+			<option value="Not Started">Not Started</option>
+			<option value="In Progress" {{ 'selected' if status == 'In Progress' else '' }}>In Progress</option>
+			<option value="Needs Translation" {{ 'selected' if status == 'Needs Translation' else '' }}>Needs Translation</option>
+			<option value="Needs Review" {{ 'selected' if status == 'Needs Review' else '' }}>Needs Review</option>
+			<option value="Finished" {{ 'selected' if status == 'Finished' else '' }}>Finished</option>
+		</select> <button id="save-status">Save</button><br>
+		<a href="{{ handler.index.get_view.url(fn=fn) }}">View translated image</a>
+	</div>
+	<div id="edit" style="display: none">
+		<span id="helper" style="font-weight: bold"></span><br>
+		German text:<br>
+		<textarea id="de-text"></textarea><br>
+		English text:<br><textarea id="en-text"></textarea><br>
+		<button id="save">Save</button> <button id="delete">Delete</button> <button id="reshape">Reshape</button> <button id="to-translate">Translate</button><br>
+		<br>
+		<h4>Quick text</h4>
+		<ul>
+			<li><a class="quick-text" data-en="{{ name }}" data-de="{{ name }}">{{ name }} (Part name)</a></li>
+			<li><a class="quick-text" data-en="Tolerances in µ" data-de="Abmasse in µ">Abmasse in µ</a></li>
+			<li><a class="quick-text" data-en="Section" data-de="Schnitt">Schnitt</a></li>
+			<li><a class="quick-text" data-en="Dimensions in brackets are auxiliary dimensions without consideration of tolerances" data-de="Maße in Klammern sind Hilfsmaße ohne Berücksichtigung von Toleranzen">Maße in Klammern ...</a></li>
+			<li><a class="quick-text" data-en="Prevailing surface finish:
+slightly tumbled" data-de="Vorherrschende Oberflächengüte:
+leicht getrommelt">Vorherr... leicht getrommelt</a></li>
+			<li><a class="quick-text" data-en="Surface Treatment" data-de="Oberflächenbehandlung">Oberflächenbehandlung</a></li>
+			<li><a class="quick-text" data-en="Heat Treatment" data-de="Wärmebehandlung">Wärmebehandlung</a></li>
+		</ul>
+	</div>
+</div>
+{% endblock %}
