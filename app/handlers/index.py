@@ -4,7 +4,7 @@ from handler import *
 def load_bom():
 	names = dict()
 	for line in file('../bom.txt'):
-		num, name, quantity = [x.strip() for x in line.split('||')][1:-1]
+		num, name, quantity, process = [x.strip() for x in line.split('||')][1:-1]
 		num = int(num.split(' ')[0][3:-3])
 		names[num] = name
 	return names

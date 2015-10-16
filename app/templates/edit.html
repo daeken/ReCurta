@@ -75,7 +75,8 @@ var regions = {{ regions | safe }};
 			<option value="Needs Review" {{ 'selected' if status == 'Needs Review' else '' }}>Needs Review</option>
 			<option value="Finished" {{ 'selected' if status == 'Finished' else '' }}>Finished</option>
 		</select> <button id="save-status">Save</button><br>
-		<a href="{{ handler.index.get_view.url(fn=fn) }}">View translated image</a>
+		<a href="{{ handler.index.get_view.url(fn=fn) }}">View translated image</a><br>
+		<a href="http://demoseen.com/curta-completed/{{ fn }}.jpg">Completed image</a> (If available)
 	</div>
 	<div id="edit" style="display: none">
 		<span id="helper" style="font-weight: bold"></span><br>
