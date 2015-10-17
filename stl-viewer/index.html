@@ -283,7 +283,7 @@
                 //xhr.setRequestHeader('charset', 'x-user-defined');
                 xhr.send( );
 
-                renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();
+                renderer = new THREE.WebGLRenderer({ antialias: true }); //new THREE.CanvasRenderer();
                 renderer.setSize( window.innerWidth, window.innerHeight );
 
                 document.body.appendChild( renderer.domElement );
