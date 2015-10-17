@@ -7,14 +7,26 @@
         <style>
             body {
                 font-family: Monospace;
-                background-color: #f0f0f0;
                 margin: 0px;
                 overflow: hidden;
+            }
+            canvas {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #fullscreen {
+                position: absolute;
+                top: 10px;
+                left: 10px;
             }
         </style>
     </head>
     <body>
+        <img src="fullscreen.png" id="fullscreen">
         <script src="three.js"></script>
+        <script src="threex.fullscreen.js"></script>
+        <script src="threex.windowresize.js"></script>
         <script src="detector.js"></script>
         <script>
 
@@ -285,6 +297,7 @@
 
                 renderer = new THREE.WebGLRenderer({ antialias: true }); //new THREE.CanvasRenderer();
                 renderer.setSize( window.innerWidth, window.innerHeight );
+                THREEx.WindowResize(renderer, camera);
 
                 document.body.appendChild( renderer.domElement );
 
@@ -316,6 +329,12 @@
                     scale = Math.max(scale, 0.1);
                     evt.preventDefault();
                 });
+                document.getElementById('fullscreen').addEventListener('click', function() {
+                    if(THREEx.FullScreen.activated())
+                        THREEx.FullScreen.cancel();
+                    else
+                        THREEx.FullScreen.request();
+                });
             }
 
             function animate() {
@@ -327,14 +346,14 @@
             }
 
             function render() {
+                renderer.setClearColor(new THREE.Color(0xf0f0f0));
 
-                //mesh.rotation.x += 0.01;
-                if (mesh && !manualRotate) {
-                    mesh.rotation.x += 0.0075;
+                if (mesh) {
+                    if(!manualRotate)
+                        mesh.rotation.x += 0.0075;
+                    mesh.scale.set(scale, scale, scale);
                 }
-                //light1.position.z -= 1;
-                mesh.scale.set(scale, scale, scale);
-
+                
                 renderer.render( scene, camera );
 
             }
