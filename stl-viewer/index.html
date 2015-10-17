@@ -20,7 +20,7 @@
 
             var camera, scene, renderer,
             geometry, material, mesh, light1, scale, 
-            miny = 10000;
+            offX, offY, offZ;
 
             function trim (str) {
                 str = str.replace(/^\s+/, '');
@@ -47,14 +47,15 @@
                 // console.log('number of triangles: ' + triangles);
 
                 var offset = 4;
-                var mb = 0, x = 0, y = 0, z = 0;
+                var x = 0, y = 0, z = 0;
+                maxX = minX = maxY = minY = maxZ = minZ = 0;
                 for (var i = 0; i < triangles; i++) {
                     // Get the normal for this triangle
-                    var normal = new THREE.Vector3(
+                    /*var normal = new THREE.Vector3(
                         dv.getFloat32(offset, isLittleEndian),
                         dv.getFloat32(offset+4, isLittleEndian),
                         dv.getFloat32(offset+8, isLittleEndian)
-                    );
+                    );*/
                     offset += 12;
 
                     // Get all 3 vertices for this triangle
@@ -66,8 +67,12 @@
                                 z=dv.getFloat32(offset+8, isLittleEndian)
                             )
                         );
-                        mb = Math.max(mb, Math.max(Math.abs(x), Math.max(Math.abs(y), Math.abs(z))));
-                        miny = Math.min(miny, y);
+                        maxX = Math.max(maxX, x);
+                        minX = Math.min(minX, x);
+                        maxY = Math.max(maxY, y);
+                        minY = Math.min(minY, y);
+                        maxZ = Math.max(maxZ, z);
+                        minZ = Math.min(minZ, z);
                         offset += 12
                     }
 
@@ -76,7 +81,7 @@
                     offset += 2;   
 
                     // Create a new face for from the vertices and the normal             
-                    geo.faces.push(new THREE.Face3(i*3, i*3+1, i*3+2, normal));
+                    geo.faces.push(new THREE.Face3(i*3, i*3+1, i*3+2, new THREE.Vector3(0, 0, 0)));
                 }
 
                 // The binary STL I'm testing with seems to have all
@@ -85,6 +90,18 @@
                 // once we've assembled our geometry. This is a relatively 
                 // expensive operation, but only needs to be done once.
                 geo.computeFaceNormals();
+
+                offX = (maxX - minX) / 2;
+                offY = (maxY - minY) / 2;
+                offZ = (maxZ - minZ) / 2;
+                
+                for(var i = 0; i < triangles * 3; ++i) {
+                    geo.vertices[i].set(
+                        geo.vertices[i].x - minX - offX, 
+                        geo.vertices[i].y - minY - offY, 
+                        geo.vertices[i].z - minZ - offZ
+                    );
+                }
 
                 mesh = new THREE.Mesh( 
                     geo,
@@ -98,6 +115,8 @@
                     }
                 ));
                 scene.add(mesh);
+
+                var mb = Math.max(maxX - minX, Math.max(maxY - minY, maxZ - minZ));
 
                 if(mb != 0)
                     scale = .75 / mb;
@@ -247,8 +266,6 @@
                     //parseStl(xhr.responseText);
                     mesh.rotation.x = 5;
                     mesh.rotation.z = .25;
-                    if(miny < 100)
-                        mesh.position.y = -miny * scale / 4;
                     mesh.scale.set(scale, scale, scale);
                     console.log('done parsing');
                 }

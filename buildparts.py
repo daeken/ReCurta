@@ -33,7 +33,8 @@ for num, name, quantity in bom:
 		body += '[[image Curta_1_%i_en.jpg size="medium"]]\n\n' % num
 	else:
 		body += '\n'
-	body += '[[iframe http://demoseen.com/curta-stl/?%i width="600" height="450" ]]\n\n' % num
+	if isfile('STL Models/%i.stl' % num):
+		body += '[[iframe http://demoseen.com/curta-stl/?%i width="600" height="450" ]]\n\n' % num
 	if num in referenced:
 		body += '**Referenced by**:\n'
 		for elem in referenced[num]:
