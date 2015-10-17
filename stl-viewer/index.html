@@ -267,8 +267,8 @@
                     var rep = xhr.response; // || xhr.mozResponseArrayBuffer;
                     parseStlBinary(rep);
                     //parseStl(xhr.responseText);
-                    mesh.rotation.x = 0;
-                    mesh.rotation.z = 3;
+                    mesh.rotation.x = -Math.PI / 2;
+                    mesh.rotation.z = 0;
                     mesh.scale.set(scale, scale, scale);
                     console.log('done parsing');
                 }
@@ -303,7 +303,7 @@
                     curMove = [evt.clientX - mousepos[0], evt.clientY - mousepos[1]];
                     mousepos = [evt.clientX, evt.clientY];
                     manualRotate = true;
-                    mesh.rotation.z += curMove[0] * .01;
+                    mesh.rotation.z -= curMove[0] * .01;
                     mesh.rotation.x += curMove[1] * .01;
                 });
                 renderer.domElement.addEventListener('mousewheel', function(evt) {
