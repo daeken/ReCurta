@@ -20,7 +20,7 @@
 
             var camera, scene, renderer,
             geometry, material, mesh, light1, scale, 
-            offX, offY, offZ;
+            offX, offY, offZ, manualRotate = false;
 
             function trim (str) {
                 str = str.replace(/^\s+/, '');
@@ -51,11 +51,11 @@
                 maxX = minX = maxY = minY = maxZ = minZ = 0;
                 for (var i = 0; i < triangles; i++) {
                     // Get the normal for this triangle
-                    /*var normal = new THREE.Vector3(
+                    var normal = new THREE.Vector3(
                         dv.getFloat32(offset, isLittleEndian),
                         dv.getFloat32(offset+4, isLittleEndian),
                         dv.getFloat32(offset+8, isLittleEndian)
-                    );*/
+                    );
                     offset += 12;
 
                     // Get all 3 vertices for this triangle
@@ -81,15 +81,8 @@
                     offset += 2;   
 
                     // Create a new face for from the vertices and the normal             
-                    geo.faces.push(new THREE.Face3(i*3, i*3+1, i*3+2, new THREE.Vector3(0, 0, 0)));
+                    geo.faces.push(new THREE.Face3(i*3, i*3+1, i*3+2, normal));
                 }
-
-                // The binary STL I'm testing with seems to have all
-                // zeroes for the normals, unlike its ASCII counterpart.
-                // We can use three.js to compute the normals for us, though,
-                // once we've assembled our geometry. This is a relatively 
-                // expensive operation, but only needs to be done once.
-                geo.computeFaceNormals();
 
                 offX = (maxX - minX) / 2;
                 offY = (maxY - minY) / 2;
@@ -102,24 +95,33 @@
                         geo.vertices[i].z - minZ - offZ
                     );
                 }
-
+                //geo.mergeVertices();
+                //geo.computeFaceNormals();
+                //geo.computeVertexNormals();
+                
                 mesh = new THREE.Mesh( 
                     geo,
-                    // new THREE.MeshNormalMaterial({
-                    //     overdraw:true
-                    // }
-                    new THREE.MeshLambertMaterial({
-                        overdraw:true,
+                    /*new THREE.MeshNormalMaterial({
+                        overdraw:true
+                    }*/
+                    /*new THREE.MeshLambertMaterial({
                         color: 0xffffff,
-                        shading: THREE.FlatShading
+                        shading: THREE.SmoothShading
+                    }*/
+                    new THREE.MeshPhongMaterial({
+                        color: 0xffffff, 
+                        shading: THREE.SmoothShading, 
+                        metal: true, 
+                        shininess: 150
                     }
                 ));
+                //mesh.geometry.computeFaceNormals();
                 scene.add(mesh);
 
                 var mb = Math.max(maxX - minX, Math.max(maxY - minY, maxZ - minZ));
 
                 if(mb != 0)
-                    scale = .75 / mb;
+                    scale = 1. / mb;
                 else
                     scale = 1;
 
@@ -252,12 +254,13 @@
                 camera.position.y = 0;
                 scene.add( camera );
 
-                var directionalLight = new THREE.DirectionalLight( 0xffffff );
+                var directionalLight = new THREE.DirectionalLight( 0x888888 );
                 directionalLight.position.x = 0; 
-                directionalLight.position.y = 0; 
-                directionalLight.position.z = 1; 
+                directionalLight.position.y = 3; 
+                directionalLight.position.z = 5; 
                 directionalLight.position.normalize();
                 scene.add( directionalLight );
+                scene.add(new THREE.AmbientLight( 0x404040 ));
 
                 var xhr = new XMLHttpRequest();
                 xhr.onload = function (ev) {
@@ -265,7 +268,7 @@
                     parseStlBinary(rep);
                     //parseStl(xhr.responseText);
                     mesh.rotation.x = 5;
-                    mesh.rotation.z = .25;
+                    mesh.rotation.z = 3;
                     mesh.scale.set(scale, scale, scale);
                     console.log('done parsing');
                 }
@@ -284,6 +287,28 @@
                 renderer.setSize( window.innerWidth, window.innerHeight );
 
                 document.body.appendChild( renderer.domElement );
+
+                var mousedown = false, mousepos = [0, 0];
+                renderer.domElement.addEventListener('mousedown', function(evt) {
+                    mousepos = [evt.clientX, evt.clientY];
+                    mousedown = true;
+                });
+                renderer.domElement.addEventListener('mouseup', function(evt) {
+                    mousedown = false;
+                });
+                renderer.domElement.addEventListener('mousemove', function(evt) {
+                    if(mousedown === false)
+                        return;
+
+                    curMove = [evt.clientX - mousepos[0], evt.clientY - mousepos[1]];
+                    mousepos = [evt.clientX, evt.clientY];
+                    manualRotate = true;
+                    mesh.rotation.z += curMove[0] * .01;
+                    mesh.rotation.x += curMove[1] * .01;
+                });
+                renderer.domElement.addEventListener('mousewheel', function(evt) {
+                    camera.position.z -= evt.wheelDelta * .001;
+                });
             }
 
             function animate() {
@@ -297,8 +322,8 @@
             function render() {
 
                 //mesh.rotation.x += 0.01;
-                if (mesh) {
-                    mesh.rotation.z += 0.02;
+                if (mesh && !manualRotate) {
+                    mesh.rotation.z += 0.0075;
                 }
                 //light1.position.z -= 1;
 
