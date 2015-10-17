@@ -88,16 +88,23 @@
                 offY = (maxY - minY) / 2;
                 offZ = (maxZ - minZ) / 2;
                 
+                var mb = Math.max(maxX - minX, Math.max(maxY - minY, maxZ - minZ));
+
+                if(mb != 0)
+                    scale = .75 / mb;
+                else
+                    scale = 1;
+
                 for(var i = 0; i < triangles * 3; ++i) {
                     geo.vertices[i].set(
-                        geo.vertices[i].x - minX - offX, 
-                        geo.vertices[i].y - minY - offY, 
-                        geo.vertices[i].z - minZ - offZ
+                        (geo.vertices[i].x - minX - offX) * scale, 
+                        (geo.vertices[i].y - minY - offY) * scale, 
+                        (geo.vertices[i].z - minZ - offZ) * scale
                     );
                 }
                 //geo.mergeVertices();
                 //geo.computeFaceNormals();
-                //geo.computeVertexNormals();
+                //geo.computeVertexNormals(true);
                 
                 mesh = new THREE.Mesh( 
                     geo,
@@ -114,16 +121,10 @@
                         metal: true, 
                         shininess: 150
                     }
+                    //new THREE.MeshBasicMaterial({color: 0, wireframe: true}
                 ));
                 //mesh.geometry.computeFaceNormals();
                 scene.add(mesh);
-
-                var mb = Math.max(maxX - minX, Math.max(maxY - minY, maxZ - minZ));
-
-                if(mb != 0)
-                    scale = .75 / mb;
-                else
-                    scale = 1;
 
                 stl = null;
             };  
@@ -269,7 +270,7 @@
                     //parseStl(xhr.responseText);
                     mesh.rotation.x = -Math.PI / 2;
                     mesh.rotation.z = 0;
-                    mesh.scale.set(scale, scale, scale);
+                    //mesh.scale.set(scale, scale, scale);
                     console.log('done parsing');
                 }
                 xhr.onerror = function(e) {
@@ -303,7 +304,7 @@
                     curMove = [evt.clientX - mousepos[0], evt.clientY - mousepos[1]];
                     mousepos = [evt.clientX, evt.clientY];
                     manualRotate = true;
-                    mesh.rotation.z -= curMove[0] * .01;
+                    mesh.rotation.y += curMove[0] * .01;
                     mesh.rotation.x += curMove[1] * .01;
                 });
                 renderer.domElement.addEventListener('mousewheel', function(evt) {
