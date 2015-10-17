@@ -34,7 +34,7 @@ for num, name, quantity in bom:
 	else:
 		body += '\n'
 	if isfile('STL Models/%i.stl' % num):
-		body += '[[iframe http://demoseen.com/curta-stl/?%i width="600" height="450" ]]\n\n' % num
+		body += '[[iframe http://demoseen.com/curta-stl/?%i width="500" height="500" ]]\n\n' % num
 	if num in referenced:
 		body += '**Referenced by**:\n'
 		for elem in referenced[num]:
