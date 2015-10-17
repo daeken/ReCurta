@@ -19,7 +19,7 @@
         <script>
 
             var camera, scene, renderer,
-            geometry, material, mesh, light1, scale, 
+            geometry, material, mesh, light1, scale = 1, 
             offX, offY, offZ, manualRotate = false;
 
             function trim (str) {
@@ -91,15 +91,15 @@
                 var mb = Math.max(maxX - minX, Math.max(maxY - minY, maxZ - minZ));
 
                 if(mb != 0)
-                    scale = .75 / mb;
+                    pscale = .75 / mb;
                 else
-                    scale = 1;
+                    pscale = 1;
 
                 for(var i = 0; i < triangles * 3; ++i) {
                     geo.vertices[i].set(
-                        (geo.vertices[i].x - minX - offX) * scale, 
-                        (geo.vertices[i].y - minY - offY) * scale, 
-                        (geo.vertices[i].z - minZ - offZ) * scale
+                        (geo.vertices[i].x - minX - offX) * pscale, 
+                        (geo.vertices[i].y - minY - offY) * pscale, 
+                        (geo.vertices[i].z - minZ - offZ) * pscale
                     );
                 }
                 //geo.mergeVertices();
@@ -270,7 +270,6 @@
                     //parseStl(xhr.responseText);
                     mesh.rotation.x = -Math.PI / 2;
                     mesh.rotation.z = 0;
-                    //mesh.scale.set(scale, scale, scale);
                     console.log('done parsing');
                 }
                 xhr.onerror = function(e) {
@@ -304,11 +303,17 @@
                     curMove = [evt.clientX - mousepos[0], evt.clientY - mousepos[1]];
                     mousepos = [evt.clientX, evt.clientY];
                     manualRotate = true;
-                    mesh.rotation.y += curMove[0] * .01;
                     mesh.rotation.x += curMove[1] * .01;
+                    mesh.rotation.x += Math.PI * 100;
+                    mesh.rotation.x %= Math.PI * 2;
+                    if(!(mesh.rotation.x >= Math.PI * 1.5 || mesh.rotation.x <= Math.PI * .5))
+                        curMove[0] = -curMove[0];
+                    mesh.rotation.y += curMove[0] * .01;
                 });
                 renderer.domElement.addEventListener('mousewheel', function(evt) {
-                    camera.position.z -= evt.wheelDelta * .001;
+                    //camera.position.z -= evt.wheelDelta * .001;
+                    scale += evt.wheelDelta * .0005;
+                    scale = Math.max(scale, 0.1);
                     evt.preventDefault();
                 });
             }
@@ -328,6 +333,7 @@
                     mesh.rotation.x += 0.0075;
                 }
                 //light1.position.z -= 1;
+                mesh.scale.set(scale, scale, scale);
 
                 renderer.render( scene, camera );
 
