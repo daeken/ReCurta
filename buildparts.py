@@ -19,7 +19,7 @@ names = dict()
 
 main_page = """The table below includes every part in the Curta type I.  The original engineering diagrams included on most of these pages are from the [http://www.museummura.li/content.aspx?nid=5051&groupnr=5051 Museum Mura]
 
-||~ Part No. ||~ Name ||~ Quantity ||~ Proposed Process || Has Model ||
+||~ Part No. ||~ Name ||~ Quantity ||~ Proposed Process ||~ Has Model ||
 """
 
 processes = dict(
