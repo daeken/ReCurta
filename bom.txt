@@ -18,7 +18,7 @@
 || [[[10020]]] || Guide sleeve for transmission gears (aka 410345) || 1 || Lathe + Compression ||
 || [[[10021]]] || Half carry pin || 8 || M ||
 || [[[10022]]] || Crank handle pin || 1 || L ||
-|| [[[10023]]] || Reversing lever spring || 1 || B ||
+|| [[[10023]]] || Reversing lever spring || 1 || Buy ||
 || [[[10024]]] || Clearing plate plunger || 1 || L ||
 || [[[10025]]] || Main bearing sleeve body || 1 || L ||
 || [[[10026]]] || Carriage holding nut || 1 || L ||
@@ -42,10 +42,10 @@
 || [[[10043]]] || Numeral dial I || 4 || L ||
 || [[[10045]]] || Numeral dial II || 13 || L ||
 || [[[10046]]] || Decimal marker || 7 || L ||
-|| [[[10047]]] || Decimal marker spring || 7 || B ||
+|| [[[10047]]] || Decimal marker spring || 7 || Buy ||
 || [[[10048]]] || Cylindrical screws || 2 || L ||
 || [[[10049]]] || Lock gear (aka 410350) || 17 || C ||
-|| [[[10050]]] || Carriage pressure spring || 1 || B ||
+|| [[[10050]]] || Carriage pressure spring || 1 || Buy ||
 || [[[10051]]] || Transmission gear spacer (aka 410351) || 15 || L ||
 || [[[10052]]] || Transmission gear || 17 || M ||
 || [[[10053]]] || Count gear II (aka 410352) || 15 || C ||
@@ -53,7 +53,7 @@
 || [[[10055]]] || Guide sleeve for transmission gears (aka 410354) || 15 || Lathe + Compression ||
 || [[[10056]]] || Guide sleeve for transmission gears || 1 || Lathe + Compression ||
 || [[[10057]]] || Setting knob || 8 || M ||
-|| [[[10058]]] || NRP (Non-Return Pawl) spring || 1 || B ||
+|| [[[10058]]] || NRP (Non-Return Pawl) spring || 1 || Buy ||
 || [[[10059]]] || NRP shouldered screw || 1 || L ||
 || [[[10061]]] || Setting Shaft || 8 || L ||
 || [[[10062]]] || Lower housing ring || 1 || L ||
@@ -66,7 +66,7 @@
 || [[[10070]]] || Step drum positioning spring || 1 || M ||
 || [[[10071]]] || Locking ring || 1 || C ||
 || [[[10072]]] || Tens bell locking pin || 1 || L ||
-|| [[[10073]]] || Setting knob spring || 8 || B ||
+|| [[[10073]]] || Setting knob spring || 8 || Buy ||
 || [[[10074]]] || Countersunk screws || 3 || L ||
 || [[[10075]]] || Guiding screw || 8 || L ||
 || [[[10076]]] || Drum plate 10 tooth || 1 || C ||
@@ -79,7 +79,7 @@
 || [[[10083]]] || Drum plate 7 tooth || 2 || C ||
 || [[[10084]]] || Drum plate 4 tooth || 6 || C ||
 || [[[10085]]] || Collar || 1 || L ||
-|| [[[10086]]] || Clearing plate spring || 1 || B ||
+|| [[[10086]]] || Clearing plate spring || 1 || Buy ||
 || [[[10087]]] || Drum plate 6 tooth || 2 || C ||
 || [[[10088]]] || Carriage ring || 1 || L ||
 || [[[10089]]] || Carriage cage || 1 || M ||
@@ -106,15 +106,15 @@
 || [[[10112]]] || Zero positioning roller || 1 || L ||
 || [[[10113]]] || Non Return Pawl || 1 || M ||
 || [[[10114]]] || Zero positioning lever || 1 || M ||
-|| [[[10115]]] || Zero positioning lever spring || 1 || B ||
+|| [[[10115]]] || Zero positioning lever spring || 1 || Buy ||
 || [[[10116]]] || Screw for zero positioning lever || 1 || L ||
 || [[[2037]]] || Screw for zero positioning lever (looks to be for type II) || 1 || L ||
 || [[[10118]]] || Disc spring clip || 1 || Bend ||
 || [[[10119]]] || End plate || 1 || M ||
 || [[[10120]]] || Tens bell support plate || 1 || C ||
 || [[[10121]]] || Non Return Pawl bushing || 1 || L ||
-|| [[[2074]]] || Nut || 2 || B ||
-|| [[[10124]]] || Container tightening ring || 1 || B ||
+|| [[[2074]]] || Nut || 2 || Buy ||
+|| [[[10124]]] || Container tightening ring || 1 || Buy ||
 || [[[10125]]] || Barrel of zero positioning lever || 1 || L ||
 || [[[10126]]] || Decorative cover for top of capsule || 1 || M ||
 || [[[10129]]] || Carriage pressure ring || 1 || C ||
@@ -130,19 +130,19 @@
 || [[[10141]]] || Ferrule (aka 410360) || 17 || L ||
 || [[[10142]]] || Curved tooth racks || 2 || C ||
 || [[[10143]]] || Spacer for clearing plate || 1 || C ||
-|| [[[10145]]] || Steel ball || 1 || B ||
+|| [[[10145]]] || Steel ball || 1 || Buy ||
 || [[[10147]]] || Main bearing sleeve bushing || 1 || L ||
 || [[[10148]]] || Cylindrical pin || 1 || L ||
 || [[[10149]]] || Cylindrical pin || 2 || L ||
 || [[[10150]]] || Cylindrical pin || 1 || L ||
-|| [[[10152]]] || Split washer || 1 || B ||
+|| [[[10152]]] || Split washer || 1 || Buy ||
 || [[[10153]]] || Shim washer || 1 || M ||
 || [[[10154]]] || Internal serial number plate || 1 || M ||
 || [[[10156]]] || Decorative plate for capsule || 1 || M ||
 || [[[10158]]] || Baseplate design || 1 || M ||
 || [[[10160]]] || Baseplate design II (Alternate drawing?) || 1 || M ||
 || [[[10161]]] || Retaining nut (Unused?) || 1 || L ||
-|| [[[10162]]] || Washer || 1 || B ||
+|| [[[10162]]] || Washer || 1 || Buy ||
 || [[[410367]]] || Taper pin || 1 || L ||
 || [[[10203]]] || Number dial I || 4 ||  ||
 || [[[10204]]] || Number dial IIa || 7 ||  ||
