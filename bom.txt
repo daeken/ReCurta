@@ -4,7 +4,7 @@
 || [[[10004]]] || Spider spring || 1 || C ||
 || [[[10005]]] || Ten carry lever for results || 10 || C ||
 || [[[10006]]] || Ten carry lever for turns || 5 || C ||
-|| [[[10007]]] || Ten carry lever spring || 15 || O ||
+|| [[[10007]]] || Ten carry lever spring || 15 || Spring wind ||
 || [[[10008]]] || Numeral dial axles || 17 || L ||
 || [[[10009]]] || Tens bell body || 1 || L ||
 || [[[10010]]] || Step drum positioning tongue || 1 || C ||
@@ -15,7 +15,7 @@
 || [[[10016]]] || Carriage shift positioning pin || 1 || L ||
 || [[[10018]]] || Ten carry lever bearing block || 15 || M ||
 || [[[10019]]] || Full carry pin || 7 || L ||
-|| [[[10020]]] || Guide sleeve for transmission gears (aka 410345) || 1 || O ||
+|| [[[10020]]] || Guide sleeve for transmission gears (aka 410345) || 1 || Lathe + Compression ||
 || [[[10021]]] || Half carry pin || 8 || M ||
 || [[[10022]]] || Crank handle pin || 1 || L ||
 || [[[10023]]] || Reversing lever spring || 1 || B ||
@@ -27,7 +27,7 @@
 || [[[10029]]] || Number dial || 8 || L ||
 || [[[10030]]] || Clearing plate body || 1 || M ||
 || [[[10031]]] || Retaining ring || 1 || C ||
-|| [[[10032]]] || Guide sleeve for transmission gears (aka 410346) || 1 || O ||
+|| [[[10032]]] || Guide sleeve for transmission gears (aka 410346) || 1 || Lathe + Compression ||
 || [[[10033]]] || Flat spring || 1 || C ||
 || [[[10034]]] || Clearing Lever || 1 || M ||
 || [[[10035]]] || Retaining bushing for carriage pressure spring || 1 || L ||
@@ -50,8 +50,8 @@
 || [[[10052]]] || Transmission gear || 17 || M ||
 || [[[10053]]] || Count gear II (aka 410352) || 15 || C ||
 || [[[10054]]] || Ferrule (aka 410353) || 15 || L ||
-|| [[[10055]]] || Guide sleeve for transmission gears (aka 410354) || 15 || O ||
-|| [[[10056]]] || Guide sleeve for transmission gears || 1 || O ||
+|| [[[10055]]] || Guide sleeve for transmission gears (aka 410354) || 15 || Lathe + Compression ||
+|| [[[10056]]] || Guide sleeve for transmission gears || 1 || Lathe + Compression ||
 || [[[10057]]] || Setting knob || 8 || M ||
 || [[[10058]]] || NRP (Non-Return Pawl) spring || 1 || B ||
 || [[[10059]]] || NRP shouldered screw || 1 || L ||
@@ -89,7 +89,7 @@
 || [[[10094]]] || Rivet washer || 1 || M ||
 || [[[10095]]] || Spring housing || 1 || L ||
 || [[[10096]]] || Drum plate 9 tooth || 1 || C ||
-|| [[[10097]]] || Circlip for count gear || 9 || O ||
+|| [[[10097]]] || Circlip for count gear || 9 || Cut or buy ||
 || [[[10098]]] || Small distance spring || 1 || M ||
 || [[[10099]]] || Clearing plate distance ring || 1 || M ||
 || [[[10100]]] || Turns counter carry increment || 1 || M ||
@@ -109,7 +109,7 @@
 || [[[10115]]] || Zero positioning lever spring || 1 || B ||
 || [[[10116]]] || Screw for zero positioning lever || 1 || L ||
 || [[[2037]]] || Screw for zero positioning lever (looks to be for type II) || 1 || L ||
-|| [[[10118]]] || Disc spring clip || 1 || O ||
+|| [[[10118]]] || Disc spring clip || 1 || Bend ||
 || [[[10119]]] || End plate || 1 || M ||
 || [[[10120]]] || Tens bell support plate || 1 || C ||
 || [[[10121]]] || Non Return Pawl bushing || 1 || L ||
@@ -118,15 +118,15 @@
 || [[[10125]]] || Barrel of zero positioning lever || 1 || L ||
 || [[[10126]]] || Decorative cover for top of capsule || 1 || M ||
 || [[[10129]]] || Carriage pressure ring || 1 || C ||
-|| [[[10130]]] || Rubber cushion, large || 1 || O ||
-|| [[[10131]]] || Rubber cushion, small || 1 || O ||
+|| [[[10130]]] || Rubber cushion, large || 1 || Buy ||
+|| [[[10131]]] || Rubber cushion, small || 1 || Buy ||
 || [[[10133]]] || C-clip || 1 || C ||
 || [[[10134]]] || Carriage turn stop pin || 1 || L ||
 || [[[10135]]] || Setting shaft bearing pin || 8 || L ||
 || [[[10136]]] || Setting shaft plates || 2 || C ||
 || [[[10137]]] || Retaining bushing, large || 1 || L ||
 || [[[10138]]] || Retaining bushing, small || 1 || L ||
-|| [[[10140]]] || Guide sleeve for transmission gears (aka 410359) || 16 || O ||
+|| [[[10140]]] || Guide sleeve for transmission gears (aka 410359) || 16 || Lathe + Compression ||
 || [[[10141]]] || Ferrule (aka 410360) || 17 || L ||
 || [[[10142]]] || Curved tooth racks || 2 || C ||
 || [[[10143]]] || Spacer for clearing plate || 1 || C ||
@@ -143,7 +143,6 @@
 || [[[10160]]] || Baseplate design II (Alternate drawing?) || 1 || M ||
 || [[[10161]]] || Retaining nut (Unused?) || 1 || L ||
 || [[[10162]]] || Washer || 1 || B ||
-|| [[[10163]]] || !Lasche || 1 || O ||
 || [[[410367]]] || Taper pin || 1 || L ||
 || [[[10203]]] || Number dial I || 4 ||  ||
 || [[[10204]]] || Number dial IIa || 7 ||  ||
