@@ -308,6 +308,7 @@
                 });
                 renderer.domElement.addEventListener('mousewheel', function(evt) {
                     camera.position.z -= evt.wheelDelta * .001;
+                    evt.preventDefault();
                 });
             }
 
