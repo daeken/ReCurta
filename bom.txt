@@ -60,7 +60,7 @@
 || [[[10064]]] || Support column || 3 || L ||
 || [[[10065]]] || Reversing lever axle || 1 || L ||
 || [[[10066]]] || Reversing handle || 1 || M ||
-|| [[[10067]]] || Reversing plate || 1 || C ||
+|| [[[10067]]] || Reversing plate || 1 || M ||
 || [[[10068]]] || Step drum positioning cam || 1 || L ||
 || [[[10069]]] || Taper pin for step drum || 1 || L ||
 || [[[10070]]] || Step drum positioning spring || 1 || M ||
