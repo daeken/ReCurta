@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block scripts %}
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+<script src="/scripts/tag.js"></script>
+<style>
+body {
+	width: 100%;
+	height: 100%;
+	font-family: "Roboto Slab";
+	font-weight: 300;
+	overflow: hidden;
+}
+div {
+	float: left;
+	overflow: scroll;
+}
+#img {
+	width: 80%;
+	height: 100%;
+}
+img {
+	max-width:100%;
+	max-height:100%;
+}
+#parts {
+	width: 20%;
+	height: 100%;
+	user-select: none;
+	-webkit-user-select: none;
+}
+</style>
+<div id="img">
+	<img src="http://demoseen.com/curta-reference/{{ fn }}">
+</div>
+<div id="parts">
+	<table>
+		<tr><th>&nbsp;</th><th>Number</th><th>Name</th></tr>
+		{% for num, name in parts %}
+			<tr>
+				<td><input type="checkbox" id="select_{{ num }}"></td>
+				<td onclick="toggle('{{ num }}')">{{ num }}</td>
+				<td onclick="toggle('{{ num }}')">{{ name }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

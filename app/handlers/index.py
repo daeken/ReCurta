@@ -109,3 +109,11 @@ def get_fails():
 	return dict(
 		fails=[(key, fails[key]) for key in keys]
 	)
+
+@handler('part-tag')
+def get_part_tag(fn):
+	names = load_bom()
+	return dict(
+		fn=fn, 
+		parts=names.items()
+	)

@@ -2,3 +2,5 @@
 wikidoturl
 
 *.pyc
+
+*.cjs
