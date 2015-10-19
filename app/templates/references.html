@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block scripts %}
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+<style>
+body {
+	width: 100%;
+	height: 100%;
+	font-family: "Roboto Slab";
+	font-weight: 300;
+}
+a {
+	color: black;
+}
+a, a:visited, a:active {
+	text-decoration: none;
+	border-bottom: 1px black dashed;
+}
+a:hover {
+	border-bottom: 1px black solid;
+}
+</style>
+<table>
+	<tr><th>Filename</th><th>Number of tags</th></tr>
+	{% for fn, tags in files %}
+		<tr style="font-weight: {{ 'bold' if len(tags) == 0 else '300' }}"><td><a href="{{ handler.index.get_part_tag.url(fn=fn) }}">{{ fn }}</a></td><td>{{ len(tags) }}</td></tr>
+	{% endfor %}
+</table>
+{% endblock %}
