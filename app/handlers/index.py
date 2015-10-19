@@ -16,6 +16,19 @@ def load_regions(fn):
 	except:
 		return '[]'
 
+def load_part_refs():
+	refs = {}
+	backrefs = {}
+	for fn in glob.glob('part-references/*.json'):
+		rfn, fn = fn, fn.split('/')[-1].rstrip('.json')
+		refs[fn] = json.load(file(rfn, 'r'))
+		for ref in refs[fn]:
+			if ref not in backrefs:
+				backrefs[ref] = []
+			if fn not in backrefs[ref]:
+				backrefs[ref].append(fn)
+	return refs, backrefs
+
 def get_status(fn):
 	try:
 		fp = file('status/%s.txt' % fn)
@@ -110,10 +123,37 @@ def get_fails():
 		fails=[(key, fails[key]) for key in keys]
 	)
 
+@handler('references')
+def get_references():
+	refs, backrefs = load_part_refs()
+	files = [fn.split('/')[-1] for fn in glob.glob('../reference-photos/*.jpg')]
+	tfiles = []
+	print refs
+	for fn in files:
+		tfiles.append((fn, refs[fn] if fn in refs else []))
+	return dict(
+		files=tfiles, 
+		refs=refs, 
+	)
+
 @handler('part-tag')
 def get_part_tag(fn):
+	if '/' in fn or '\\' in fn:
+		return
 	names = load_bom()
+	try:
+		refs = json.load(file('part-references/' + fn + '.json', 'r'))
+	except:
+		refs = []
 	return dict(
 		fn=fn, 
-		parts=names.items()
+		parts=names.items(), 
+		refs=refs, 
 	)
+
+@handler
+def rpc_save_part_refs(fn, refs):
+	if '/' in fn or '\\' in fn:
+		return
+	with file('part-references/' + fn + '.json', 'w') as fp:
+		json.dump(refs, fp)

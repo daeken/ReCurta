@@ -29,19 +29,21 @@ img {
 	-webkit-user-select: none;
 }
 </style>
-<div id="img">
+<div id="img" data-fn="{{ fn }}">
 	<img src="http://demoseen.com/curta-reference/{{ fn }}">
 </div>
 <div id="parts">
+	<button class="save">Save</button>
 	<table>
 		<tr><th>&nbsp;</th><th>Number</th><th>Name</th></tr>
 		{% for num, name in parts %}
 			<tr>
-				<td><input type="checkbox" id="select_{{ num }}"></td>
+				<td><input type="checkbox" id="select_{{ num }}" class="part-select" data-num="{{ num }}" {{ 'checked' if num in refs else '' }}></td>
 				<td onclick="toggle('{{ num }}')">{{ num }}</td>
 				<td onclick="toggle('{{ num }}')">{{ name }}</td>
 			</tr>
 		{% endfor %}
 	</table>
+	<button class="save">Save</button>
 </div>
 {% endblock %}
