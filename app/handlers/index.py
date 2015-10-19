@@ -147,7 +147,7 @@ def get_part_tag(fn):
 		refs = []
 	return dict(
 		fn=fn, 
-		parts=names.items(), 
+		parts=[(num, name) for (num, name) in names.items() if not str(num).startswith('102') and not name.startswith('!IGNORE')], 
 		refs=refs, 
 	)
 
