@@ -1,0 +1,25 @@
+Top already off, case off.
+
+Setting shaft plate 1 removed -- 10136
+clockwise-most setting shaft bearing and shaft removed -- 10135, 3.38mm length (real 3.377mm).  marked #1
+second bearing removed.  3.41mm length, 3.404mm real. marked #2
+third removed.  3.44mm intended length, 3.404mm real. marked #3
+fourth removed.  3.47mm intended length, 3.405mm real. marked #4
+second shaft plate removed
+fifth bearing removed.  3.50mm intended length, 3.414mm real. marked #5
+sixth bearing removed.  3.53mm intended length, 3.407mm real. marked #6
+seventh bearing removed.  3.56mm intended length, 3.386mm real! marked #7.  2.288mm diameter (2.3mm expected)
+eighth bearing removed.  3.59mm intended length, 3.403mm real. marked #8.
+
+looking at the curta with the shaft (where the handle would be) pointing away and the reversing lever to the left, i'm taking out the first setting position carry assembly.
+using purple screwdriver, removed screw (M1.4x5, VSM 12124).  lifted assembly straight out.
+first removed carry lever (10005) from bearing block (10018), then slipped spring (10007) off bearing block.
+second carry assembly removed with same procedure.
+NOTE: lever fits into bearing block with short end of lever barely sticking out!
+
+while holding carry assembly, hold it with the flat face of lever (and spring ends) pointing up.  lift lever out of place, then push tines of spring down to release it securely.  third through tenth removed and disassembled using this procedure, safely.
+
+the same procedure was followed for the tens carry assemblies for turns.  these use lever 10006 -- NOT 10005.
+
+
+removed hex nut from reversing lever assembly.  pushed shaft down until slotted section of shaft appeared, then pulled the assembly straight out, through the slot in the lower casting.  removed lower bearing from shaft (unknown part number.  15.282mm long, 4mm OD, 2.42mm ID), and removed upper bearing from shaft (unknown part number.  5.011mm long, 4mm OD, 2.4mm ID). all parts placed into labeled container 

@@ -1,0 +1,4 @@
+tell application "SolidWorks eDrawings"
+    activate
+    tell application "System Events" to key code 53
+end tell
