@@ -36,7 +36,11 @@ pid$target:libGL.dylib:glBufferDataARB:entry /arg1 > 49152 && arg1 <= 131072/ {
 	printf("%i %i %i", arg1, arg0, arg3);
 	tracemem(copyin(arg2, arg1), 131072, arg1);
 }
-pid$target:libGL.dylib:glBufferDataARB:entry /arg1 > 131072/ {
+pid$target:libGL.dylib:glBufferDataARB:entry /arg1 > 131072 && arg1 <= 1048576/ {
+	printf("%i %i %i", arg1, arg0, arg3);
+	tracemem(copyin(arg2, arg1), 1048576, arg1);
+}
+pid$target:libGL.dylib:glBufferDataARB:entry /arg1 > 1048576/ {
 	printf("MELTDOWN");
 	exit(0);
 }
