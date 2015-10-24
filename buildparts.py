@@ -46,7 +46,7 @@ for num, name, quantity, process in bom:
 		body += '[[image Curta_1_%i_en.jpg size="medium"]]\n\n' % num
 	else:
 		body += '\n'
-	if isfile('CModels/%i.stl' % num):
+	if isfile('CModels/%i.cm' % num):
 		body += '[[iframe http://demoseen.com/curta-stl/?%i width="500" height="500" ]]\n\n' % num
 		main_page += '|| [[[%i]]] || %s || %i || %s || Yes ||\n' % (num, name, quantity, process)
 	else:
