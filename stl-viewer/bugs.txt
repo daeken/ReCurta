@@ -1,0 +1,14 @@
+10021 missing flat face
+10039 missing cap
+10059 missing half its top
+10068 missing top
+10072 missing top
+10074 missing part of top
+10075 missing part of top
+10076 missing part of one tooth
+10078 empty?
+10080 empty?
+10082 empty?
+10083 empty?
+10084 empty?
+

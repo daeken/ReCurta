@@ -110,22 +110,21 @@
                         (geo.vertices[i].z - minZ - offZ) * pscale
                     );
                 }
-                //geo.mergeVertices();
-                //geo.computeFaceNormals();
+                geo.mergeVertices();
+                geo.computeFaceNormals();
                 //geo.computeVertexNormals(true);
                 
                 mesh = new THREE.Mesh( 
                     geo,
-                    /*new THREE.MeshLambertMaterial({
-                        color: 0xffffff,
-                        shading: THREE.SmoothShading
-                    }*/
-                    new THREE.MeshPhongMaterial({
+                    new THREE.MeshNormalMaterial({
+
+                    }
+                    /*new THREE.MeshPhongMaterial({
                         color: 0xbbbbc0, 
                         shading: THREE.SmoothShading, 
                         metal: true, 
                         shininess: 30, 
-                    }
+                    }*/
                     //new THREE.MeshBasicMaterial({color: 0, wireframe: true}
                 ));
                 //mesh.geometry.computeFaceNormals();

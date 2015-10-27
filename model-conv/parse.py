@@ -40,7 +40,6 @@ def enum(en):
 
 def convert(infile, outfile):
 	buffers = {}
-	active_buffer = 0
 	active_indices = 0
 	active_vertices = 0
 
@@ -50,6 +49,10 @@ def convert(infile, outfile):
 	all_indices = []
 
 	pairs = []
+
+	in_type = None
+	in_verts = None
+	cur_normal = None
 
 	lines = [line.strip() for line in file(infile, 'r').read().split('\n')[1:]]
 	i = 0
@@ -70,7 +73,6 @@ def convert(infile, outfile):
 				active_indices = rest[0]
 			else:
 				active_vertices = rest[0]
-			active_buffer = rest[0]
 			i += 1
 		elif func == 'glBufferDataARB':
 			i += 1
@@ -84,6 +86,10 @@ def convert(infile, outfile):
 			if rest[0] == 0:
 				continue
 			databuf = databuf[:rest[0]]
+			if enum(rest[1]) == 'GL_ELEMENT_ARRAY_BUFFER_ARB':
+				active_buffer = active_indices
+			else:
+				active_buffer = active_vertices
 			buffers[active_buffer][2] = databuf
 			assert buffers[active_buffer][0] == enum(rest[1])
 			buffers[active_buffer][1] = enum(rest[2])
@@ -100,7 +106,7 @@ def convert(infile, outfile):
 
 			hash = md5.new(buf + ibuf).hexdigest()
 			if hash not in pairs:
-				pairs.append(hash)
+				#pairs.append(hash)
 
 				ptr = len(all_vertices)
 				if len(data) % 6 != 0:
@@ -113,10 +119,39 @@ def convert(infile, outfile):
 				if datatype == 'GL_UNSIGNED_SHORT':
 					data = struct.unpack('H' * (len(ibuf) >> 1), ibuf)
 				else:
-					raise Exception('adspfoj', datatype)
+					raise Exception('Unknown datatype for glDrawElements', datatype)
 
 				all_indices += [ptr + x for x in data]
 
+			i += 1
+		elif func == 'glBegin_Exec':
+			in_type = enum(rest[0])
+			in_verts = []
+			cur_normal = [0, 0, 0]
+			i += 1
+		elif func == 'glVertex2f_Exec' or func == 'glVertex3f_Exec' or func == 'glVertex3fv_Exec':
+			in_verts.append(([struct.unpack('f', struct.pack('I', x))[0] for x in rest], cur_normal))
+			i += 1
+		elif func == 'glNormal3f_Exec' or func == 'glNormal3fv_Exec':
+			cur_normal = [struct.unpack('f', struct.pack('I', x))[0] for x in rest]
+			i += 1
+		elif func == 'glEnd_Exec':
+			if in_type == 'GL_TRIANGLES':
+				if len(in_verts) != 30 and len(in_verts) != 84:
+					assert len(in_verts) % 3 == 0
+					all_indices += [len(all_vertices) + j for j in xrange(len(in_verts))]
+					all_vertices += [x[0] for x in in_verts]
+					all_normals += [x[1] for x in in_verts]
+			elif in_type == 'GL_TRIANGLE_STRIP':
+				for j in xrange(len(in_verts) - 2):
+					x = len(all_vertices) + j
+					all_indices += [x, x + 1, x + 2]
+				print in_verts
+				all_vertices += [x[0] for x in in_verts]
+				all_normals += [x[1] for x in in_verts]
+			else:
+				print 'unknown type:', in_type
+			in_type = in_verts = None
 			i += 1
 		else:
 			print 'Unknown line:', line
