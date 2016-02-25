@@ -46,6 +46,11 @@ for num, name, quantity, process in bom:
 		body += '[[image Curta_1_%i_en.jpg size="medium"]]\n\n' % num
 	else:
 		body += '\n'
+	dlfn = 'drawings/%i.png' % num
+	if isfile(dlfn):
+		body += '[[image Drawing_%i.png size="medium"]]\n\n' % num
+	else:
+		body += '\n'
 	if isfile('CModels/%i.cm' % num):
 		body += '[[iframe http://demoseen.com/curta-stl/?%i width="500" height="500" ]]\n\n' % num
 		main_page += '|| [[[%i]]] || %s || %i || %s || Yes ||\n' % (num, name, quantity, process)
@@ -74,6 +79,7 @@ for num, name, quantity, process in bom:
 
 	bfn = 'Curta_1_%i.jpg' % num
 	benfn = 'Curta_1_%i_en.jpg' % num
+	dfn = 'Drawing_%i.png' % num
 	fn = '/home/daeken/demoseen/curta/Curta_1_%i.jpg' % num
 	cfiles = s.files.select(dict(site='curtawiki', page=str(num)))
 	if isfile(fn) and bfn not in cfiles:
@@ -93,6 +99,16 @@ for num, name, quantity, process in bom:
 		s.files.save_one(dict(
 			site='curtawiki', page=str(num), 
 			file=benfn,
+			content=data.encode('base64').replace('\n', ''), 
+			save_mode='create', 
+		))
+	if isfile(dlfn) and dfn not in cfiles:
+		time.sleep(1)
+		print 'Uploading', dfn
+		data = file(dlfn, 'rb').read()
+		s.files.save_one(dict(
+			site='curtawiki', page=str(num), 
+			file=dfn,
 			content=data.encode('base64').replace('\n', ''), 
 			save_mode='create', 
 		))
